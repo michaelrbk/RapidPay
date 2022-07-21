@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.0.123"/>
+        <PackageReference Include="FastEndpoints" Version="4.3.1"/>
+        <PackageReference Include="FastEndpoints.Security" Version="4.3.1"/>
+        <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.7"/>
+        <PackageReference Include="ValueOf" Version="2.0.31"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="appsettings.json"/>
+        <Content Include="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="appsettings.Development.json"/>
+        <Content Include="appsettings.Development.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+</Project>
