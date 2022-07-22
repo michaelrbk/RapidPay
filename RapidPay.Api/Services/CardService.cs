@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using RapidPay.Api.Domain;
+using RapidPay.Api.Domain.ValueObjects;
 using RapidPay.Api.Mapping;
 using RapidPay.Api.Repositories;
 
@@ -9,10 +10,12 @@ namespace RapidPay.Api.Services;
 public class CardService : ICardService
 {
     private readonly ICardRepository _cardRepository;
+    private readonly UFEBackgroundService _ufe;
 
-    public CardService(ICardRepository cardRepository)
+    public CardService(ICardRepository cardRepository, UFEBackgroundService ufe)
     {
         _cardRepository = cardRepository;
+        _ufe = ufe;
     }
 
     public async Task<bool> CreateAsync(Card card)
@@ -37,9 +40,11 @@ public class CardService : ICardService
         return cardDto?.ToCard();
     }
 
-    public async Task<bool> UpdateAsync(Card card)
+    public async Task<bool> PayAsync(Card card, PositiveAmount amount)
     {
-        var cardDto = card.ToCardDto();
-        return await _cardRepository.UpdateAsync(cardDto);
+        Console.WriteLine($"Pay Card:{card.Id} Amount:{amount} Fee:{_ufe.Fee}");
+        var payDto = card.ToPayDto(amount, _ufe.Fee);
+
+        return await _cardRepository.PayAsync(payDto);
     }
 }

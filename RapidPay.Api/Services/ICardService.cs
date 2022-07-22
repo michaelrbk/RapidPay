@@ -1,4 +1,5 @@
 ﻿using RapidPay.Api.Domain;
+using RapidPay.Api.Domain.ValueObjects;
 
 namespace RapidPay.Api.Services;
 
@@ -8,5 +9,5 @@ public interface ICardService
 
     Task<Card?> GetAsync(Guid id);
 
-    Task<bool> UpdateAsync(Card card);
+    Task<bool> PayAsync(Card card, PositiveAmount amount);
 }

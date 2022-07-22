@@ -15,24 +15,11 @@ public class DatabaseInitializer
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();
         await connection.ExecuteAsync(@"
-            CREATE TABLE IF NOT EXISTS cards(
-                          id         CHAR(36) PRIMARY KEY,
-                          card_number CHAR(15) NOT NULL,
-                          balance DECIMAL NOT NULL
+            CREATE TABLE IF NOT EXISTS Cards(
+                          Id         CHAR(36) PRIMARY KEY,
+                          CardNumber CHAR(15) NOT NULL,
+                          Balance DECIMAL NOT NULL
              )
         ");
-
-
-        /*
-        CREATE TABLE IF NOT EXISTS payments(
-            id     char(36) PRIMARY KEY,
-            card_id char(15) NOT NULL,
-            value decimal NOT NULL,
-            FOREIGN KEY(card_id) REFERENCES cards(id)
-            );
-        CREATE TABLE IF NOT EXISTS fees (
-            id  char(36) PRIMARY KEY,
-            fee decimal NOT NULL
-            );*/
     }
 }

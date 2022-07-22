@@ -8,5 +8,5 @@ public interface ICardRepository
 
     Task<CardDto?> GetAsync(Guid id);
 
-    Task<bool> UpdateAsync(CardDto cardDto);
+    Task<bool> PayAsync(PayDto payDto);
 }

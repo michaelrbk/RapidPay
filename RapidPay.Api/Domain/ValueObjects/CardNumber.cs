@@ -6,6 +6,6 @@ public class CardNumber : ValueOf<string, CardNumber>
 {
     protected override void Validate()
     {
-        if (Value == string.Empty) throw new ArgumentException("Id cannot be empty", nameof(Id));
+        if (Value == string.Empty) throw new ArgumentException("CardNumber cannot be empty", nameof(Id));
     }
 }

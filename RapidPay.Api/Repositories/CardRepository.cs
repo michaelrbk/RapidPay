@@ -17,7 +17,7 @@ public class CardRepository : ICardRepository
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();
         var result = await connection.ExecuteAsync(
-            @"INSERT INTO cards (Id, card_number, balance) 
+            @"INSERT INTO Cards (Id, CardNumber, Balance) 
             VALUES (@Id, @CardNumber, @Balance)",
             card);
         return result > 0;
@@ -27,16 +27,16 @@ public class CardRepository : ICardRepository
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();
         return await connection.QuerySingleOrDefaultAsync<CardDto>(
-            "SELECT * FROM cards WHERE Id = @Id LIMIT 1",
+            "SELECT * FROM Cards WHERE Id = @Id LIMIT 1",
             new {Id = id.ToString()});
     }
 
-    public async Task<bool> UpdateAsync(CardDto card)
+    public async Task<bool> PayAsync(PayDto payment)
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();
         var result = await connection.ExecuteAsync(
-            @"UPDATE cards SET Balance = @Balance WHERE Id = @Id",
-            card);
+            @"UPDATE Cards SET Balance = Balance + @Amount + @Fee WHERE Id = @Id",
+            payment);
         return result > 0;
     }
 }
