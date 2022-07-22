@@ -5,7 +5,7 @@ namespace RapidPay.Api.Services;
 public class UFEBackgroundService : BackgroundService
 {
     private static readonly Random Random = new();
-    private readonly PeriodicTimer _timer = new(TimeSpan.FromSeconds(1));
+    private readonly PeriodicTimer _timer = new(TimeSpan.FromHours(1));
 
     public decimal Fee { get; private set; } = NextFee();
 

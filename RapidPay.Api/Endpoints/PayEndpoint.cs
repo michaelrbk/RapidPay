@@ -8,7 +8,7 @@ using RapidPay.Api.Services;
 namespace RapidPay.Api.Endpoints;
 
 [HttpPost("cards/{CardId:guid}/pay")]
-public class PayEndpoint : Endpoint<PayRequest, PayResponse>
+public class PayEndpoint : Endpoint<PayRequest>
 {
     private readonly ICardService _cardService;
 
@@ -29,6 +29,6 @@ public class PayEndpoint : Endpoint<PayRequest, PayResponse>
 
         await _cardService.PayAsync(card, PositiveAmount.From(req.Amount));
 
-        await SendOkAsync(card.ToPayResponse(req), ct);
+        await SendOkAsync(ct);
     }
 }

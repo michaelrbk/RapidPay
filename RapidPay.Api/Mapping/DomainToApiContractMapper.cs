@@ -15,15 +15,4 @@ public static class DomainToApiContractMapper
             Balance = card.Balance.Value
         };
     }
-
-    public static PayResponse ToPayResponse(this Card card, PayRequest req)
-    {
-        return new PayResponse
-        {
-            CardId = card.Id.Value,
-            CardNumber = card.CardNumber.Value,
-            Balance = card.Balance.Value,
-            Amount = req.Amount
-        };
-    }
 }

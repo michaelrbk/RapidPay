@@ -1,9 +1,10 @@
 ##### Instructions
 - Simply clone the project and run it.
 - Sample requests can be found in [here](RapidPay.Api/sample_requests.http)
+- Can also be tested using [Swagger](https://localhost:5001//swagger) and using login endpoint with user *admin* password *pass* to get the auth token 
 
 
-###### Attempt to do the challenge with a new approach to me, implementing minimal apis with FastEndpoints
+###### Attempted to do the challenge with a new approach for me, implementing minimal apis with FastEndpoints as seen on [NDC London 2022](https://www.youtube.com/watch?v=hPpvlKLeYYA)
  
 #### Using:
 - dotnet 6.0
