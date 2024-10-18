@@ -6,17 +6,16 @@ using Microsoft.Extensions.DependencyInjection;
 using RapidPay.Api.Database;
 using RapidPay.Api.Repositories;
 using RapidPay.Api.Services;
-using FastEndpoints.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
-builder.Services.AddFastEndpoints();
-builder.Services.AddAuthenticationJWTBearer("01G8H2T5K78BYVEN8JFMN1NGZG");
-builder.Services.AddSwaggerDoc();
+builder.Services
+    .AddAuthenticationJwtBearer(options => options.SigningKey = "9C5FE0ED928BA25C2D1CDD14071393BB8494DD9F")
+    .AddAuthorization()
+    .AddFastEndpoints();
 
-builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
-    new SqliteConnectionFactory(config.GetValue<string>("Database:ConnectionString")));
+builder.Services.AddSingleton<IDbConnectionFactory>(_ => new SqliteConnectionFactory(config.GetValue<string>("Database:ConnectionString")));
 builder.Services.AddHostedService(sp => sp.GetRequiredService<UFEBackgroundService>());
 builder.Services.AddSingleton<UFEBackgroundService>();
 builder.Services.AddSingleton<DatabaseInitializer>();
@@ -25,11 +24,9 @@ builder.Services.AddSingleton<ICardService, CardService>();
 
 var app = builder.Build();
 
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseFastEndpoints();
-app.UseOpenApi();
-app.UseSwaggerUi3(s => s.ConfigureDefaults());
+app.UseAuthentication()
+    .UseAuthorization()
+    .UseFastEndpoints();
 
 var databaseInitializer = app.Services.GetRequiredService<DatabaseInitializer>();
 await databaseInitializer.InitializeAsync();

@@ -14,7 +14,7 @@ public class UserLoginEndpoint : Endpoint<LoginRequest>
         if (req.Username == "admin" && req.Password == "pass")
         {
             var jwtToken = JWTBearer.CreateToken(
-                "01G8H2T5K78BYVEN8JFMN1NGZG",
+                "9C5FE0ED928BA25C2D1CDD14071393BB8494DD9F",
                 DateTime.UtcNow.AddDays(1),
                 claims: new[] {("Username", req.Username), ("UserID", "001")},
                 roles: new[] {"Admin"},
