@@ -1,8 +1,8 @@
 ### Get Swagger
-GET https://localhost:5001//swagger
+GET https://localhost:6001//swagger
 
 ### Get JWT Bearer Token
-POST https://localhost:5001/login
+POST https://localhost:6001/login
 Content-Type: application/json
 
 {
@@ -13,7 +13,7 @@ Content-Type: application/json
 > {% client.global.set("auth_token", response.body.token); %}
 
 ### Create Card with invalid request
-POST https://localhost:5001/cards
+POST https://localhost:6001/cards
 Authorization: Bearer {{auth_token}}
 Content-Type: application/json
 
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ### Create Card
-POST https://localhost:5001/cards
+POST https://localhost:6001/cards
 Authorization: Bearer {{auth_token}}
 Content-Type: application/json
 
@@ -33,11 +33,11 @@ Content-Type: application/json
 > {% client.global.set("card_id", response.body.id); %}
 
 ### Get Card
-GET https://localhost:5001/cards/{{card_id}}
+GET https://localhost:6001/cards/{{card_id}}
 Authorization: Bearer {{auth_token}}
 
 ### Post Pay with invalid request
-POST https://localhost:5001/cards/{{card_id}}/pay
+POST https://localhost:6001/cards/{{card_id}}/pay
 Authorization: Bearer {{auth_token}}
 Content-Type: application/json
 
@@ -46,7 +46,7 @@ Content-Type: application/json
 }
 
 ### Post Pay
-POST https://localhost:5001/cards/{{card_id}}/pay
+POST https://localhost:6001/cards/{{card_id}}/pay
 Authorization: Bearer {{auth_token}}
 Content-Type: application/json
 
@@ -55,5 +55,5 @@ Content-Type: application/json
 }
 
 ### Get Card with new Balance
-GET https://localhost:5001/cards/{{card_id}}
+GET https://localhost:6001/cards/{{card_id}}
 Authorization: Bearer {{auth_token}}

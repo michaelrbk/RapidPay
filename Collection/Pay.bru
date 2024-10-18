@@ -1,0 +1,21 @@
+meta {
+  name: Pay
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{url_http}}/cards
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{auth_token}}
+}
+
+body:json {
+  {
+    "amount": 10.0
+  }
+}

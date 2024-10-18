@@ -1,0 +1,21 @@
+meta {
+  name: Get Card
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{url_http}}/cards/{{card_id}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{auth_token}}
+}
+
+body:json {
+  {
+    "cardNumber": "less than 15"
+  }
+}

@@ -1,0 +1,21 @@
+meta {
+  name: Create Card with invalid request
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url_http}}/cards
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{auth_token}}
+}
+
+body:json {
+  {
+    "cardNumber": "less than 15"
+  }
+}
